@@ -1,100 +1,124 @@
-[![Shipping files](https://github.com/neuefische/ds-eda-project-template/actions/workflows/workflow-03.yml/badge.svg?branch=main&event=workflow_dispatch)](https://github.com/neuefische/ds-eda-project-template/actions/workflows/workflow-03.yml)
-# ds-project-template
+# DS Project Template
 
-Template for creating ds simple projects
+A lightweight and reusable data science project template designed to help you start new projects quickly and consistently.
+This repository provides a clear structure, setup instructions, and guidance for environment management and reproducibility.
+
+---
+
+## Repository Structure
+
+```
+├── .env                  # Optional environment variables file
+├── .gitignore            # Specifies files ignored by Git
+├── EDA.ipynb             # Example exploratory data analysis notebook
+├── LICENSE               # License information
+├── README.md             # Project documentation and navigation guide
+├── column_names.md       # Description or documentation of dataset columns
+├── requirements.txt      # List of Python dependencies
+└── data/                 # Folder for raw and processed datasets
+```
+
+---
 
 ## Requirements
 
-- pyenv
-- python==3.11.3
+* pyenv
+* Python 3.11.3
+* pip (latest version recommended)
+* Node.js (required for Plotly in Jupyter Lab)
 
-## Setup
+---
 
-One of the first steps when starting any data science project is to create a virtual environment. For this project you have to create this environment from scratch yourself. However, you should be already familiar with the commands you will need to do so. The general workflow consists of... 
+## Setup Instructions
 
-An updated and organized README.md file in the GitHub repository that describes the contents of the repository. This file should be the source of information for navigating through the repository.
+Follow these steps to set up your environment and install dependencies.
+Select the commands appropriate for your operating system.
 
-* setting the python version locally to 3.11.3
-* creating a virtual environment using the `venv` module
-* activating your newly created environment 
-* upgrading `pip` (This step is not absolutely necessary, but will save you trouble when installing some packages.)
-* installing the required packages via `pip`
+### macOS
 
-At the end, you want to make sure that people who are interested in your project can create an identical environment on their own computer in order to be able to run your code without running into errors. Therefore you can create a `requirements file` and add it to your repository. You can create such a file by running the following command: 
+```bash
+# Step 1: Install Node.js (if not installed)
+brew update
+brew install node
+
+# Step 2: Set Python version and create virtual environment
+pyenv local 3.11.3
+python -m venv .venv
+source .venv/bin/activate
+
+# Step 3: Upgrade pip and install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Windows (PowerShell)
+
+```bash
+# Step 1: Install Node.js (if not installed)
+choco upgrade chocolatey
+choco install nodejs
+
+# Step 2: Set Python version and create virtual environment
+pyenv local 3.11.3
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Windows (Git Bash)
+
+```bash
+pyenv local 3.11.3
+python -m venv .venv
+source .venv/Scripts/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+---
+
+
+## Reproducibility
+
+To ensure others can recreate your environment, generate a requirements file after installing dependencies:
 
 ```bash
 pip freeze > requirements.txt
 ```
 
-*Note: In rare case such a requirements file created with `pip freeze` might not ensure that another (especially M1 chip) user can install and execute it properly. This can happen if libraries need to be compiled (e.g. SciPy). Then it also depends on environment variables and the actual system libraries.*
+Note: On systems such as macOS M1, some compiled libraries (for example, SciPy) may require additional setup or system libraries.
 
-### Unit testing (Optional)
+---
 
-If you write python scripts for your data processing methods, you can also write unit tests. In order to run the tests execute in terminal:
+## Repository Navigation
 
-```bash
-pytest
-```
+* **EDA.ipynb** – Explore and visualize your dataset.
+* **data/** – Store raw and processed data.
+* **column_names.md** – Reference for dataset fields and naming conventions.
+* **requirements.txt** – List of dependencies for consistent environments.
+* **.env** – (Optional) Store environment variables or API keys securely.
 
-This command will execute all the functions in your project that start with the word **test**.
+---
 
-## Set up your Environment
-This repo contains a requirements.txt file with a list of all the packages and dependencies you will need.
+## License
 
-Before you can start with plotly in Jupyter Lab you have to install node.js (if you haven't done it before).
-- Check **Node version**  by run the following commands:
-    ```sh
-    node -v
-    ```
-    If you haven't installed it yet, begin at `step_1`. Otherwise, proceed to `step_2`.
+This project is distributed under the terms of the MIT License.
+See the [LICENSE](LICENSE) file for details.
 
+---
 
-### **`macOS`** type the following commands : 
+## About This Project
 
+First Project – Data Analysis: King County Housing Data
 
-- `Step_1:` Update Homebrew and install Node by following commands:
-    ```sh
-    brew update
-    brew install node
-    ```
+This project focuses on exploratory data analysis (EDA) and the presentation of findings to a client.
+The dataset contains information on home sales in King County, USA, and is accessed via the eda schema in the shared database (DBeaver). The CSV file should be stored locally in the data/ directory.
 
-- `Step_2:` Install the virtual environment and the required packages by following commands:
+The goal is to explore the data, perform statistical and geographical analysis, and derive meaningful insights and actionable recommendations.
+Students are expected to:
+Explore the dataset and join the relevant tables.
+Conduct EDA to identify at least three insights, including one geographical insight.
+Provide at least three client recommendations, taking the perspective of either a buyer or a seller.
 
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-### **`WindowsOS`** type the following commands :
-
-
-- `Step_1:` Update Chocolatey and install Node by following commands:
-    ```sh
-    choco upgrade chocolatey
-    choco install nodejs
-    ```
-
-- `Step_2:` Install the virtual environment and the required packages by following commands.
-
-   For `PowerShell` CLI :
-
-    ```PowerShell
-    pyenv local 3.11.3
-    python -m venv .venv
-    .venv\Scripts\Activate.ps1
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-
-    For `Git-Bash` CLI :
-  
-    ```BASH
-    pyenv local 3.11.3
-    python -m venv .venv
-    source .venv/Scripts/activate
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
- 
+Column name descriptions are provided in column_names.md. Some names may be ambiguous, simulating real-world data interpretation challenges. When in doubt, perform additional research or make reasoned assumptions, clearly stated in the analysis.
