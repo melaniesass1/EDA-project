@@ -12,6 +12,8 @@ Template for creating ds simple projects
 
 One of the first steps when starting any data science project is to create a virtual environment. For this project you have to create this environment from scratch yourself. However, you should be already familiar with the commands you will need to do so. The general workflow consists of... 
 
+An updated and organized README.md file in the GitHub repository that describes the contents of the repository. This file should be the source of information for navigating through the repository.
+
 * setting the python version locally to 3.11.3
 * creating a virtual environment using the `venv` module
 * activating your newly created environment 
